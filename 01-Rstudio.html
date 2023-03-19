@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>rstudio</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-Rbegin.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">应用时间序列分析——R语言</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">应用时间序列分析——R语言</a> 
+        <div class="sidebar-tools-main">
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=|url|">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=|url|">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=|url|">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">序言</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Rstudio.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R和Rstudio的安装与使用</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Rbegin.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R语言基础</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-TSdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">时间序列数据</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-ARIMA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">平稳时间序列——ARMA模型</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+
+<section id="r和rstudio的安装与使用" class="level1">
+<h1>R和Rstudio的安装与使用</h1>
+<section id="r语言安装" class="level2">
+<h2 class="anchored" data-anchor-id="r语言安装">R语言安装</h2>
+<p><strong>第一步：</strong>打开R语言官方网站（<a href="https://www.r-project.org/" class="uri">https://www.r-project.org/</a>）。如果你是第一次安装R语言，直接点击<strong><code>download R</code></strong> 即可。</p>
+<p><img src="images/image-1691800780.png" class="img-fluid"></p>
+<p><strong>第二步，</strong>点击<strong><code>download R</code></strong> 后，R网站会提示你选择一个合适的镜像。R镜像是一个R软件源的副本，它可以提供更快速的软件包下载速度。我们可以选择一些国内的镜像。比如，你可以选择<code>TUAN Team, Tsinghua University</code> ，即<code>清华大学</code> 对应的镜像，点击对应的链接即可。</p>
+<p><img src="images/image-1583790835.png" class="img-fluid"></p>
+<p><strong>第三步，</strong>打开<code>清华大学</code> 镜像后，网站会跳转到R语言下载界面。R提供了Linux安装程序、MacOS安装程序和Windows安装程序。你可以根据自己的计算机系统选择适当的安装程序。我的个人计算机是Windows系统，后续以Windows安装程序的下载、安装为例。</p>
+<p><img src="images/image-1290182151.png" class="img-fluid"></p>
+<p><strong>第四步，</strong>点击<code>Download R for Windows</code> ，进入如下页面：</p>
+<p><img src="images/image-1129431715.png" class="img-fluid"></p>
+<p><strong>第五步，</strong>点击<code>install R for the first time</code> ，进入如下页面：</p>
+<p><img src="images/image-73576471.png" class="img-fluid"></p>
+<p><strong>第六步，</strong>点击<code>Download R-4.2.2 for Windows</code> ，开始下载R语言安装程序。目前的版本为R-4.2.2，文件名为<code>R-4.2.2-win.exe</code>，大小约为76M，相比Matlab、SAS等其他大型统计软件而言，R语言是比较小巧的。</p>
+<p><img src="images/image-2058406010.png" class="img-fluid"></p>
+<p><strong>第七步，</strong>下载完成后，双击<code>R-4.2.2-win.exe</code> 打开R语言安装程序，系统中会出现如下界面：</p>
+<p><img src="images/image-16648956.png" class="img-fluid"></p>
+<p><strong>第八步，</strong>选择适当的语言（如<code>中文简体</code>），点击<code>确定</code>：</p>
+<p><img src="images/image-1578730055.png" class="img-fluid"></p>
+<p>第九步，点击<code>下一步</code> ：</p>
+<p><img src="images/image-27579326.png" class="img-fluid"></p>
+<p><strong>第十步，</strong>选择你的安装路径。如果你觉得安装在C盘太占用空间，也可以安装在其他盘。</p>
+<p><img src="images/image-749103077.png" class="img-fluid"></p>
+<p><strong>第十一步，</strong>点击下一步：</p>
+<p><img src="images/image-863385404.png" class="img-fluid"></p>
+<p><strong>第十二步，</strong>选择<code>no</code> ，并点击下一步：</p>
+<p><img src="images/image-652057201.png" class="img-fluid"></p>
+<p>第十三步，可以保持默认选择，包括<code>创建桌面快捷方式</code>、<code>版本信息保存于注册表内</code>、<code>把R程序同.RData关联起来</code>，并点击下一步。此后，R就会开始自动安装完成。</p>
+<p><img src="images/image-2013987034.png" class="img-fluid"></p>
+</section>
+<section id="r语言界面展示" class="level2">
+<h2 class="anchored" data-anchor-id="r语言界面展示">R语言界面展示</h2>
+<p>R语言安装完成后，桌面就会出现<code>R 4.2.2</code> 图标，双击打开，尽可进入R语言操作界面：</p>
+<p><img src="images/image-1070489793.png" class="img-fluid"></p>
+<p><img src="images/image-508936370.png" class="img-fluid"></p>
+<p>可以看到，这个界面是相对比较”复古”和简陋的。如果你在工作或学习、科研中经常需要用到R语言处理数据、构建计量模型等，那么不建议使用R语言自身的操作界面，而是用更加美观、便捷的Rstudio。</p>
+</section>
+<section id="rstudio安装" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio安装">Rstudio安装</h2>
+<p><strong>第一步，</strong>进入Rstudio官网（目前已更名为posit），网址为<a href="https://posit.co/" class="uri">https://posit.co/</a>：</p>
+<p><img src="images/image-808398883.png" class="img-fluid"></p>
+<p><strong>第二步，</strong>点击右上角的<code>DOWNLOAD RSTUDIO</code> ，进入Rstudio下载界面：</p>
+<p><img src="images/image-1143049857.png" class="img-fluid"></p>
+<p><strong>第三步，</strong>再次点击<code>Rstudio Desktop</code> 子页面中的<code>DOWNLOAD RSTUDIO</code> 按钮，进入如下界面：</p>
+<p><img src="images/image-554218144.png" class="img-fluid"></p>
+<p><strong>第四步，</strong>Windows用户可以直接点击<code>DOWNLOAD RSTUDIO DESKTOP FOR WINDOW</code> 开始下载Rstudio安装程序。其他操作系统的用户可以往下滚动页面，找到适合自己操作系统的安装程序：</p>
+<p><img src="images/image-226324432.png" class="img-fluid"></p>
+<p><strong>第五步，</strong>下载完成后，双击下载好的Rstudio安装程序包（本案例中下载到的程序包为<code>RStudio-2022.12.0-353.exe</code>）：</p>
+<p><img src="images/image-905771812.png" class="img-fluid"></p>
+<p><strong>第六步，</strong>点击下一步，出现如下界面：</p>
+<p><img src="images/image-1740169033.png" class="img-fluid"></p>
+<p><strong>第七步，</strong>选择安装目录（可以不是C盘）。安装目录选择完成后，点击下一步。<strong>请注意，你需要记住你的Rstudio安装目录，因为安装完成后，电脑桌面可能不会自动生成Rstudio快捷启动图标，需要在安装目录中将启动图表发送到桌面快捷方式</strong>。</p>
+<p><img src="images/image-1473168138.png" class="img-fluid"></p>
+<p><strong>第八步，</strong>点击安装，即可安装完成。</p>
+<p><strong>第九步，</strong>若桌面没有出现Rstudio快捷启动图表，则进入你的Rstudio安装路径，找到<code>rstudio.exe</code> 文件。比如，我的安装路径是<code>E:\Rstudio2023a\RStudio</code> ，那么进入这个文件夹，即可找到该文件：</p>
+<p><img src="images/image-846070019.png" class="img-fluid"></p>
+<p><strong>第十步，</strong>鼠标右键单击该文件，并依次选择<code>发送到</code> ——<code>桌面快捷方式</code> ，即可在桌面上看到Rstudio的快捷启动图标：</p>
+<p><img src="images/image-2120412982.png" class="img-fluid"></p>
+<p><strong>第十一步，</strong>如果你觉得<code>.exe</code> 看起来不舒服，也可以给它改个名字，比如<code>rstudio</code> ：</p>
+<p><img src="images/image-616728017.png" class="img-fluid"></p>
+<p><strong>第十二步，</strong>双击该图标，即可进入Rstudio操作界面。安装好的Rstudio会自动和你之前安装的R语言软件关联起来。此时打开Rstudio后，其底层的数据计算等都是基于R语言。</p>
+</section>
+<section id="rstudio界面展示与一些环境设置" class="level2">
+<h2 class="anchored" data-anchor-id="rstudio界面展示与一些环境设置">Rstudio界面展示与一些环境设置</h2>
+<p>本节部分内容源自《R语言编程——基于tidyverse》，张敬信 著。</p>
+<p>双击桌面的Rstudio快捷启动图标，即可进入Rstudio操作界面：</p>
+<p><img src="images/image-915147479.png" class="img-fluid"></p>
+<p>在使用Rstudio之前，你可以做一些必要的设置，包括：</p>
+<ul>
+<li>切换安装扩展包的国内镜像源（目的是为了更快地下载某些程序包）：</li>
+</ul>
+<p>Tools -&gt; Global Options… -&gt; Packages，点击 Change 修改为，比如北京外国语大学镜像源：</p>
+<p><img src="images/image-77131565.png" class="img-fluid"></p>
+<ul>
+<li>设置保存文件的默认编码方式为 UTF-8。Tools -&gt; Global Options… -&gt; code -&gt; Saving，在 Default text encoding 框，点 change，修改为 UTF-8。这样保存出来的各种 R 文件，都将采用 UTF-8 编码，能够尽量避免含有中文的文件在其他电脑上打开乱码。</li>
+</ul>
+<p><img src="images/image-1593080537.png" class="img-fluid"></p>
+<ul>
+<li><p>建议顺便再勾选 Code -&gt; Display 下的 Rainbow parentheses 框，这样代码中的配对括号将用不同彩虹色匹配。</p></li>
+<li><p>另外，还建议设置 General -&gt; Workspace取消勾选 Restore .RData into workspace at startup,并将其下的 save workspace to .RData on exit: 改为 Never. 避免每次打开 RStudio 都加载之前的当前内存数据。</p></li>
+<li><p>界面风格设置：Tools -&gt; Global Options… -&gt; Apperance，选择你喜欢的风格。以下是我的Rstudio风格设置：</p></li>
+</ul>
+<p><img src="images/image-615214723.png" class="img-fluid"></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">序言</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-Rbegin.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R语言基础</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

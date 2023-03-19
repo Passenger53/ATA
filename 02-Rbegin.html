@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>rbegin</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./03-TSdata.html" rel="next">
+<link href="./01-Rstudio.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light"><script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+</head>
+<body class="nav-sidebar floating fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top"><nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }"><div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">应用时间序列分析——R语言</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav></header><!-- content --><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto"><div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">应用时间序列分析——R语言</a> 
+        <div class="sidebar-tools-main">
+    <a href="" title="Share" id="sidebar-tool-dropdown-0" class="sidebar-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share"></i></a>
+    <ul class="dropdown-menu" aria-labelledby="sidebar-tool-dropdown-0">
+<li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://twitter.com/intent/tweet?url=%7Curl%7C">
+            <i class="bi bi-bi-twitter pe-1"></i>
+          Twitter
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.facebook.com/sharer/sharer.php?u=%7Curl%7C">
+            <i class="bi bi-bi-facebook pe-1"></i>
+          Facebook
+          </a>
+        </li>
+        <li>
+          <a class="dropdown-item sidebar-tools-main-item" href="https://www.linkedin.com/sharing/share-offsite/?url=%7Curl%7C">
+            <i class="bi bi-bi-linkedin pe-1"></i>
+          LinkedIn
+          </a>
+        </li>
+    </ul>
+</div>
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+<li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">序言</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Rstudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R和Rstudio的安装与使用</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-Rbegin.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">R语言基础</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-TSdata.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">时间序列数据</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-ARIMA.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">平稳时间序列——ARMA模型</span></a>
+  </div>
+</li>
+    </ul>
+</div>
+</nav><!-- margin-sidebar -->
+<!-- main -->
+<main class="content" id="quarto-document-content"><section id="r语言基础" class="level1"><h1>R语言基础</h1>
+<p>由于本课程不是专门的R语言教学课程，因此我们很难详尽地介绍R语言的所有语法。本节主要根据后续的学习需求，介绍一些常见的、可能会用到的R语言语法。本节部分内容源自<a href="https://www.runoob.com/r/r-tutorial.html" class="uri">https://www.runoob.com/r/r-tutorial.html</a>，感兴趣的同学也可以在该网站中更系统地学习R语言基础语法。</p>
+<section id="什么是变量" class="level2"><h2 class="anchored" data-anchor-id="什么是变量">什么是变量？</h2>
+<p>R语言中，你可以把<code>变量</code> 理解成一个名字，它所代表的可以是一个数字、一串字符或是一个矩阵、一个数据框，乃至更加复杂的数据结构。你可以把各种R语言的数据结构赋值给一个变量，方便后续的数据运算。比如，你可以将数字<code>1</code> 赋值给一个叫做<code>a</code> 的变量，然后用<code>print</code> 函数将它展示出来：</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<p>上述代码中，<code>&lt;-</code> 是R语言中的一个赋值符号，它像一个箭头，表示将右侧的对象赋值给左侧的变量。操作上来讲，<code>&lt;</code>符号和<code>-</code>符号都不是很好打的字符，这会让很多程序员不适应。因此，R 语言的比较新的版本也支持<code>=</code>作为赋值符。</p>
+<p>你也可以将字符<code>好好学习，天天向上！</code> 赋值给一个叫做<code>b</code>的变量，然后用<code>print</code> 函数将它展示出来。不过，当我们输入字符时，请注意使用英文格式的<code>双引号</code> ，即<code>""</code> ，否则R语言会报错。</p>
+<div class="cell">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">b</span> <span class="op">&lt;-</span> <span class="st">"好好学习，天天向上！"</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">b</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "好好学习，天天向上！"</code></pre>
+</div>
+</div>
+<p>另外，当你运行完上述命令后，Rstudio左上侧的<code>Environment</code> 窗口中会出现我们刚刚赋值过的两个变量：</p>
+<p><img src="images/image-1907770722.png" class="img-fluid"></p>
+<p>类似地，你也可以创建一个向量赋值给<code>c</code> ：</p>
+<div class="cell">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">c</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">9</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">c</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5 6 7 8 9</code></pre>
+</div>
+</div>
+<p>其中，<code>1:9</code> 代表从1至9的九个自然数。</p>
+<p>接下来，你也可以将变量<code>c</code>转化成一个矩阵，并赋值给变量<code>d</code> ：</p>
+<div class="cell">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">d</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">c</span>, nrow <span class="op">=</span> <span class="fl">3</span>, <span class="fl">3</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">d</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9</code></pre>
+</div>
+</div>
+<p>上述代码中，<code>matrix</code> 函数是一个用来生成矩阵的函数。我们使用到了它的三个参数：<code>data</code> 、<code>nrow</code> 和<code>ncol</code> 。其中，<code>data</code> 参数中，我们输入了之前生成的变量<code>c</code> ，也就是<code>1:9</code>；<code>nrow=3</code> 是在告诉R语言我们生成的矩阵为三行；<code>ncol=6</code> 是在告诉R语言我们生成的矩阵为三列。此外，注意变量<code>c</code> 中的数据向矩阵中填充的次序：先自上至下填充完第一列，然后是第二列、第三列，以此类推。</p>
+<p>再来看一下<code>Environment</code> 窗口，出现了一个名为<code>Data</code> 的子窗口，显示我们有一个名为<code>d</code> 的矩阵。你也可以鼠标单击它，直观地看到该矩阵的样子：</p>
+<p><img src="images/image-1066841090.png" class="img-fluid"></p>
+<p><img src="images/image-1563354661.png" class="img-fluid"></p>
+<p>R 语言的有效的变量名称由字母，数字以及点号<code>.</code> 、下划线<code>_</code> 等组成，但变量名称不能以数字开头。比如<code>xiaoming123</code> 是一个合格的变量名称，但<code>123xiaoming</code> 则不可以。</p>
+</section><section id="新建一个r脚本文件" class="level2"><h2 class="anchored" data-anchor-id="新建一个r脚本文件">新建一个R脚本文件</h2>
+<p>我们可以在console窗口中输入单行的命令，然后按回车，即可看到结果：</p>
+<p><img src="images/image-149187284.png" class="img-fluid"></p>
+<p>不过，有时候我们想要实现一些更复杂的功能，并希望这些算法下次还可以重复使用，就需要新建一个R脚本文件。你可以点击如下图表（Rstudio左上角）：</p>
+<p><img src="images/image-976861151.png" class="img-fluid"></p>
+<p><img src="images/image-615878700.png" class="img-fluid"></p>
+<p>然后选择R Script，即可新建一个R脚本文件：</p>
+<p><img src="images/image-89493559.png" class="img-fluid"></p>
+<p>新建R脚本文件后，你可以使用<code>ctrl+s</code> 组合键，将它保存到电脑中的某个文件夹，并给它命名，比如：<code>mycode.R</code> 。这样，当你下次想再使用这份程序时，只需要在文件夹中双击它，即可在Rstudio中打开这份代码。</p>
+<p><img src="images/image-1987204270.png" class="img-fluid"></p>
+<p>在新建的R脚本中，如果你想运行某行、某几行或整个脚本的代码，只需要选中想要运行的部分，然后点击上侧的<code>Run</code> 按钮即可。你也可以使用快捷键运行代码，选择要运行的代码行或块，然后按下<code>Ctrl+Enter</code>或<code>Cmd+Enter</code>（在Mac上）。</p>
+</section><section id="注释" class="level2"><h2 class="anchored" data-anchor-id="注释">注释</h2>
+<p>注释主要用于一段代码的解析，可以让阅读者更易理解，编程语言的注释会被编译器忽略掉，且不会影响代码的执行。</p>
+<p>一般编程语言的注释分为单行注释与多行注释，但是 R 语言只支持单行注释，注释符号为 <code>#</code>。其实如果有多行注释我们只需要在每一行添加<code>#</code>号就好了。</p>
+<p>比如：</p>
+<div class="cell">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 本行是一个注释</span></span>
+<span><span class="co"># 本行也是一个注释</span></span>
+<span><span class="va">myString</span> <span class="op">&lt;-</span> <span class="st">"Hello, World!"</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span> <span class="op">(</span><span class="va">myString</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hello, World!"</code></pre>
+</div>
+</div>
+</section><section id="r语言基础运算" class="level2"><h2 class="anchored" data-anchor-id="r语言基础运算">R语言基础运算</h2>
+<section id="数学运算符" class="level3"><h3 class="anchored" data-anchor-id="数学运算符">数学运算符</h3>
+<p>下表列出了主要的数学运算符以及他们的运算顺序：</p>
+<table class="table">
+<thead><tr class="header">
+<th>优先级</th>
+<th>符号</th>
+<th>含义</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>()</td>
+<td>括号</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>^</td>
+<td>乘方运算</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>%%</td>
+<td>整除求余</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>%/%</td>
+<td>整除</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>*</td>
+<td>乘法</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>/</td>
+<td>除法</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>+</td>
+<td>加法</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>-</td>
+<td>减法</td>
+</tr>
+</tbody>
+</table>
+<p>以下实例演示了简单的数学运算：</p>
+<div class="cell">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 7</code></pre>
+</div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">(</span><span class="fl">1</span> <span class="op">+</span> <span class="fl">2</span><span class="op">)</span> <span class="op">*</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op">/</span> <span class="fl">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.75</code></pre>
+</div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3.4</span> <span class="op">-</span> <span class="fl">1.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.2</code></pre>
+</div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">1</span> <span class="op">-</span> <span class="fl">4</span> <span class="op">*</span> <span class="fl">0.5</span> <span class="op">^</span> <span class="fl">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">8</span> <span class="op">/</span> <span class="fl">3</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">8</span> <span class="op">/</span> <span class="fl">4</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] Inf</code></pre>
+</div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">3</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%%</a></span> <span class="fl">2</span><span class="op">^</span><span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fl">10</span> <span class="op">/</span> <span class="fl">3</span> <span class="op"><a href="https://rdrr.io/r/base/Arithmetic.html">%/%</a></span> <span class="fl">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>其中，<code>Inf</code> 代表无穷大。</p>
+</section><section id="关系运算符" class="level3"><h3 class="anchored" data-anchor-id="关系运算符">关系运算符</h3>
+<p>下表列出了R语言支持的关系运算符，关系运算符比较两个向量，将第一向量与第二向量的每个元素进行比较，结果返回一个布尔值（即<code>TRUR</code> 或<code>FALSE</code> ）。</p>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 90%">
+</colgroup>
+<thead><tr class="header">
+<th>运算符</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>&gt;</td>
+<td>判断第一个向量的每个元素是否大于第二个向量的相对应元素。</td>
+</tr>
+<tr class="even">
+<td>&lt;</td>
+<td>判断第一个向量的每个元素是否小于第二个向量的相对应元素。</td>
+</tr>
+<tr class="odd">
+<td>==</td>
+<td>判断第一个向量的每个元素是否等于第二个向量的相对应元素。</td>
+</tr>
+<tr class="even">
+<td>!=</td>
+<td>判断第一个向量的每个元素是否不等于第二个向量的相对应元素。</td>
+</tr>
+<tr class="odd">
+<td>&gt;=</td>
+<td>判断第一个向量的每个元素是否大于等于第二个向量的相对应元素。</td>
+</tr>
+<tr class="even">
+<td>&lt;=</td>
+<td>判断第一个向量的每个元素是否小于等于第二个向量的相对应元素。</td>
+</tr>
+<tr class="odd">
+<td>%in%</td>
+<td>用于判断元素是否在向量里，返回布尔值，有的话返回 TRUE，没有返回 FALSE。</td>
+</tr>
+</tbody>
+</table>
+<p>例子：</p>
+<div class="cell">
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fl">1</span></span>
+<span><span class="va">b</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span>, <span class="fl">6</span>, <span class="fl">9</span><span class="op">)</span></span>
+<span><span class="va">t</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">4</span>, <span class="fl">7</span>, <span class="fl">9</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">&gt;</span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">&lt;</span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">==</span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">!=</span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE FALSE  TRUE FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">&gt;=</span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  TRUE  TRUE FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">&lt;=</span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">b</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">t</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section><section id="逻辑运算符" class="level3"><h3 class="anchored" data-anchor-id="逻辑运算符">逻辑运算符</h3>
+<table class="table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 90%">
+</colgroup>
+<thead><tr class="header">
+<th>运算符</th>
+<th>描述</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>&amp;</td>
+<td>且，如果两个元素都为 TRUE，则结果为 TRUE，否则为 FALSE。</td>
+</tr>
+<tr class="even">
+<td>|</td>
+<td>或，如果两个元素中有一个为 TRUE，则结果为 TRUE，如果都为 FALSE，则返回 FALSE。</td>
+</tr>
+<tr class="odd">
+<td>!</td>
+<td>非，如果元素为 TRUE 则返回 FALSE，如果元素为 FALSE 则返回 TRUE。</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">TRUE</span> <span class="op">&amp;</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">FALSE</span> <span class="op">&amp;</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">TRUE</span> <span class="op">|</span> <span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">TRUE</span> <span class="op">|</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="cn">FALSE</span> <span class="op">|</span> <span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">!</span><span class="cn">TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="op">!</span><span class="cn">FALSE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+</section><section id="矩阵相乘" class="level3"><h3 class="anchored" data-anchor-id="矩阵相乘">矩阵相乘</h3>
+<p><code>*</code> 用于两个矩阵时，两个矩阵的维度必须相同，<code>*</code> 试讲两个矩阵中对应的元素两两相乘；</p>
+<p><code>%*%</code> 则是矩阵乘法，要求第一个矩阵的列数必须和第二个矩阵的行数相同。</p>
+<div class="cell">
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="va">a2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, <span class="fl">2</span>, <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</code></pre>
+</div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    2    4
+[2,]    3    5</code></pre>
+</div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a1</span> <span class="op">*</span> <span class="va">a2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]    2   12
+[2,]    6   20</code></pre>
+</div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a1</span> <span class="op"><a href="https://rdrr.io/r/base/matmult.html">%*%</a></span> <span class="va">a2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     [,1] [,2]
+[1,]   11   19
+[2,]   16   28</code></pre>
+</div>
+</div>
+<p>其他常见的数学函数（不再一一举例）：</p>
+<table class="table">
+<thead><tr class="header">
+<th>函数</th>
+<th>说明</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td>sqrt(n)</td>
+<td>n的平方根</td>
+</tr>
+<tr class="even">
+<td>exp(n)</td>
+<td>自然常数e的n次方</td>
+</tr>
+<tr class="odd">
+<td>log(m,n)</td>
+<td>m的对数函数，返回n的几次方等于m</td>
+</tr>
+<tr class="even">
+<td>log(m)</td>
+<td>m的对数函数，底为自然常数e</td>
+</tr>
+<tr class="odd">
+<td>round</td>
+<td>四舍五入</td>
+</tr>
+<tr class="even">
+<td>ceilling</td>
+<td>向上取整</td>
+</tr>
+<tr class="odd">
+<td>floor</td>
+<td>向下取整</td>
+</tr>
+<tr class="even">
+<td>sin</td>
+<td>正弦</td>
+</tr>
+<tr class="odd">
+<td>cos</td>
+<td>余弦</td>
+</tr>
+<tr class="even">
+<td>tan</td>
+<td>正切</td>
+</tr>
+<tr class="odd">
+<td>asin</td>
+<td>反正弦</td>
+</tr>
+<tr class="even">
+<td>acos</td>
+<td>反余弦</td>
+</tr>
+<tr class="odd">
+<td>atan</td>
+<td>反正切</td>
+</tr>
+</tbody>
+</table></section><section id="分布函数" class="level3"><h3 class="anchored" data-anchor-id="分布函数">分布函数</h3>
+<p>时间序列分析与概率论密切相关，因此有必要掌握一些常见的分布函数。此处仅介绍与正态分布相关的一些R语言函数：</p>
+<div class="cell">
+<div class="sourceCode" id="cb69"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 查看标准正态分布中x=0处的概率密度：</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">dnorm</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.3989423</code></pre>
+</div>
+<div class="sourceCode" id="cb71"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 查看标准正态分布中x=0处的累积概率，即p(x&lt;=0)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">pnorm</a></span><span class="op">(</span><span class="fl">0</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5</code></pre>
+</div>
+<div class="sourceCode" id="cb73"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 查看累积概率为0.95时的x，即当p(x&lt;=0.95)时，求x</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">qnorm</a></span><span class="op">(</span><span class="fl">0.95</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.644854</code></pre>
+</div>
+<div class="sourceCode" id="cb75"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 生成3个均值为5、标准差为2的正态分布随机数</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">3</span>, mean <span class="op">=</span> <span class="fl">5</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4.095417 3.094660 3.700137</code></pre>
+</div>
+</div>
+</section></section><section id="r数据类型" class="level2"><h2 class="anchored" data-anchor-id="r数据类型">R数据类型</h2>
+<p>下图是R语言的几种比较常见的数据类型：</p>
+<p><img src="images/image-188804848.png" class="img-fluid"></p>
+<section id="数组" class="level3"><h3 class="anchored" data-anchor-id="数组">数组</h3>
+<p>向量（Vector）和矩阵（Matrix）已经在前面有所介绍。数组（Array）可以视为一个更高维度的矩阵。我们知道，矩阵的维度是mn，数组则可以是更高的维度，如n1*n2*n3。</p>
+<p>需要注意的是，向量、矩阵和数组，这三种数据类型中，元素类别必须是相同的。比如，都是数值型，或都是字符型。如果将数字和字符放入一个向量，则数值型会自动转为字符型。比如：</p>
+<div class="cell">
+<div class="sourceCode" id="cb77"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">a</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="st">"b"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">a</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "1" "2" "3" "b"</code></pre>
+</div>
+</div>
+<p>R 语言数组创建使用 <code><a href="https://rdrr.io/r/base/array.html">array()</a></code> 函数，该函数使用向量作为输入参数，可以使用 dim 设置数组维度。</p>
+<p><code><a href="https://rdrr.io/r/base/array.html">array()</a></code> 函数语法格式如下：</p>
+<p><code>array(data = NA, dim = length(data), dimnames = NULL)</code></p>
+<p>参数说明：</p>
+<ul>
+<li><p>data 向量，数组元素。</p></li>
+<li><p>dim 数组的维度，默认是一维数组。</p></li>
+<li><p>dimnames 维度的名称，必须是个列表，默认情况下是不设置名称的。</p></li>
+</ul>
+<p>以下实例我们创建一个 3 行 3 列的的二维数组（即维度为3*3*2）：</p>
+<div class="cell">
+<div class="sourceCode" id="cb79"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 创建两个不同长度的向量</span></span>
+<span><span class="va">vector1</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">18</span></span>
+<span></span>
+<span><span class="co"># 创建数组</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/array.html">array</a></span><span class="op">(</span><span class="va">vector1</span>,dim <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">3</span>,<span class="fl">3</span>,<span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , 1
+
+     [,1] [,2] [,3]
+[1,]    1    4    7
+[2,]    2    5    8
+[3,]    3    6    9
+
+, , 2
+
+     [,1] [,2] [,3]
+[1,]   10   13   16
+[2,]   11   14   17
+[3,]   12   15   18</code></pre>
+</div>
+</div>
+<p>使用 dimnames 参数来设置各个维度的名称：</p>
+<div class="cell">
+<div class="sourceCode" id="cb81"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">column.names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"COL1"</span>,<span class="st">"COL2"</span>,<span class="st">"COL3"</span><span class="op">)</span></span>
+<span><span class="va">row.names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ROW1"</span>,<span class="st">"ROW2"</span>,<span class="st">"ROW3"</span><span class="op">)</span></span>
+<span><span class="va">matrix.names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Matrix1"</span>,<span class="st">"Matrix2"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/dimnames.html">dimnames</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">row.names</span>, <span class="va">column.names</span>, <span class="va">matrix.names</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>, , Matrix1
+
+     COL1 COL2 COL3
+ROW1    1    4    7
+ROW2    2    5    8
+ROW3    3    6    9
+
+, , Matrix2
+
+     COL1 COL2 COL3
+ROW1   10   13   16
+ROW2   11   14   17
+ROW3   12   15   18</code></pre>
+</div>
+</div>
+<p>选择上述数组中第二行、第三列、第一个矩阵中的元素：</p>
+<div class="cell">
+<div class="sourceCode" id="cb83"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span><span class="op">[</span><span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+<p>选择上述数组中的第二个矩阵：</p>
+<div class="cell">
+<div class="sourceCode" id="cb85"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span><span class="op">[</span>,,<span class="fl">2</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     COL1 COL2 COL3
+ROW1   10   13   16
+ROW2   11   14   17
+ROW3   12   15   18</code></pre>
+</div>
+</div>
+<p>选择上述数组中第二个矩阵，赋值为<code>matrix1</code>，并在<code>matrix1</code> 中选择第一行的数据：</p>
+<div class="cell">
+<div class="sourceCode" id="cb87"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">matrix1</span> <span class="op">&lt;-</span> <span class="va">result</span><span class="op">[</span>,,<span class="fl">2</span><span class="op">]</span></span>
+<span><span class="va">col1</span> <span class="op">&lt;-</span> <span class="va">matrix1</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">col1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>COL1 COL2 COL3 
+  10   13   16 </code></pre>
+</div>
+</div>
+<p>选择向量<code>col1</code> 中的第一个元素：</p>
+<div class="cell">
+<div class="sourceCode" id="cb89"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">col1</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>COL1 
+  10 </code></pre>
+</div>
+</div>
+</section><section id="数据框" class="level3"><h3 class="anchored" data-anchor-id="数据框">数据框</h3>
+<p>数据框（Data frame）可以理解成我们常说的”表格”。</p>
+<p>数据框是 R 语言的数据结构，是特殊的二维列表。</p>
+<p>数据框每一列都有一个唯一的列名，长度都是相等的，同一列的数据类型需要一致，<strong>不同列的数据类型可以不一样</strong>。</p>
+<p><img src="images/image-780935079.png" class="img-fluid"></p>
+<p>一般我们从外部（比如excel）读取的数据都会以数据框的形式储存在R语言中。本课程我们不会使用R语言自带的数据框，我们回主要基于R语言的<code>tidyverse</code> 包，使用该包中的<code>tibble</code> 格式的数据框，这种格式可以理解为是<code>data.frame</code> 的进阶版。后续会做进一步介绍。</p>
+<p>以下创建一个简单的数据框，包含姓名、工号、月薪：</p>
+<div class="cell">
+<div class="sourceCode" id="cb91"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    姓名 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"张三"</span>, <span class="st">"李四"</span><span class="op">)</span>,</span>
+<span>    工号 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"001"</span>,<span class="st">"002"</span><span class="op">)</span>,</span>
+<span>    月薪 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">2000</span><span class="op">)</span></span>
+<span>   </span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span> <span class="co"># 查看 table 数据</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  姓名 工号 月薪
+1 张三  001 1000
+2 李四  002 2000</code></pre>
+</div>
+</div>
+<p>数据框的数据结构可以通过 <code><a href="https://rdrr.io/r/utils/str.html">str()</a></code> 函数来展示：</p>
+<div class="cell">
+<div class="sourceCode" id="cb93"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 获取数据结构</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   2 obs. of  3 variables:
+ $ 姓名: chr  "张三" "李四"
+ $ 工号: chr  "001" "002"
+ $ 月薪: num  1000 2000</code></pre>
+</div>
+</div>
+<p>我们也可以提取指定的列：</p>
+<div class="cell">
+<div class="sourceCode" id="cb95"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 提取指定的列</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span><span class="va">table</span><span class="op">$</span><span class="va">姓名</span>,<span class="va">table</span><span class="op">$</span><span class="va">月薪</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  table.姓名 table.月薪
+1       张三       1000
+2       李四       2000</code></pre>
+</div>
+</div>
+<p>显示前两行：</p>
+<div class="cell">
+<div class="sourceCode" id="cb97"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">table</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,<span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  姓名 工号 月薪
+1 张三  001 1000
+2 李四  002 2000</code></pre>
+</div>
+</div>
+<p>我们可以通过类似坐标的形式读取指定行的某一列的数据，以下我们读取第 2 、3 行的第 1 、2 列数据：</p>
+<div class="cell">
+<div class="sourceCode" id="cb99"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    姓名 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"张三"</span>, <span class="st">"李四"</span>,<span class="st">"王五"</span><span class="op">)</span>,</span>
+<span>    工号 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"001"</span>,<span class="st">"002"</span>,<span class="st">"003"</span><span class="op">)</span>,</span>
+<span>    月薪 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">2000</span>,<span class="fl">3000</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># 读取第 2 、3 行的第 1 、2 列数据：</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="va">table</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>,<span class="fl">3</span><span class="op">)</span>,<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span><span class="op">)</span><span class="op">]</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  姓名 工号
+2 李四  002
+3 王五  003</code></pre>
+</div>
+</div>
+<p>我们可以对已有的数据框进行扩展，以下实例我们添加部门列：</p>
+<div class="cell">
+<div class="sourceCode" id="cb101"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    姓名 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"张三"</span>, <span class="st">"李四"</span>,<span class="st">"王五"</span><span class="op">)</span>,</span>
+<span>    工号 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"001"</span>,<span class="st">"002"</span>,<span class="st">"003"</span><span class="op">)</span>,</span>
+<span>    月薪 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">2000</span>,<span class="fl">3000</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># 添加部门列</span></span>
+<span><span class="va">table</span><span class="op">$</span><span class="va">部门</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"运营"</span>,<span class="st">"技术"</span>,<span class="st">"编辑"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">table</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  姓名 工号 月薪 部门
+1 张三  001 1000 运营
+2 李四  002 2000 技术
+3 王五  003 3000 编辑</code></pre>
+</div>
+</div>
+<p>我们可以使用 <code><a href="https://rdrr.io/r/base/cbind.html">cbind()</a></code> 函数将多个向量合成一个数据框：</p>
+<div class="cell">
+<div class="sourceCode" id="cb103"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 创建向量</span></span>
+<span><span class="va">sites</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Google"</span>,<span class="st">"Runoob"</span>,<span class="st">"Taobao"</span><span class="op">)</span></span>
+<span><span class="va">likes</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">222</span>,<span class="fl">111</span>,<span class="fl">123</span><span class="op">)</span></span>
+<span><span class="va">url</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"www.google.com"</span>,<span class="st">"www.runoob.com"</span>,<span class="st">"www.taobao.com"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 将向量组合成数据框</span></span>
+<span><span class="va">addresses</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">sites</span>,<span class="va">likes</span>,<span class="va">url</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 查看数据框</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">addresses</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sites    likes url             
+[1,] "Google" "222" "www.google.com"
+[2,] "Runoob" "111" "www.runoob.com"
+[3,] "Taobao" "123" "www.taobao.com"</code></pre>
+</div>
+</div>
+<p>如果要对两个数据框进行合并可以使用 rbind() 函数：</p>
+<div class="cell">
+<div class="sourceCode" id="cb105"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">table</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    姓名 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"张三"</span>, <span class="st">"李四"</span>,<span class="st">"王五"</span><span class="op">)</span>,</span>
+<span>    工号 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"001"</span>,<span class="st">"002"</span>,<span class="st">"003"</span><span class="op">)</span>,</span>
+<span>    月薪 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1000</span>, <span class="fl">2000</span>,<span class="fl">3000</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="va">newtable</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span>    姓名 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"小明"</span>, <span class="st">"小白"</span><span class="op">)</span>,</span>
+<span>    工号 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"101"</span>,<span class="st">"102"</span><span class="op">)</span>,</span>
+<span>    月薪 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">5000</span>, <span class="fl">7000</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co"># 合并两个数据框</span></span>
+<span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">rbind</a></span><span class="op">(</span><span class="va">table</span>,<span class="va">newtable</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  姓名 工号 月薪
+1 张三  001 1000
+2 李四  002 2000
+3 王五  003 3000
+4 小明  101 5000
+5 小白  102 7000</code></pre>
+</div>
+</div>
+</section><section id="列表" class="level3"><h3 class="anchored" data-anchor-id="列表">列表</h3>
+<p>列表（List）是 R 语言的对象集合，可以用来保存不同类型的数据，可以是数字、字符串、向量、另一个列表等，当然还可以包含矩阵和函数。</p>
+<p>R 语言创建列表使用 <code><a href="https://rdrr.io/r/base/list.html">list()</a></code> 函数。</p>
+<p>如下实例，我们创建一个列表，包含了字符串、向量和数字：</p>
+<div class="cell">
+<div class="sourceCode" id="cb107"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">list_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="st">"runoob"</span>, <span class="st">"google"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">11</span>,<span class="fl">22</span>,<span class="fl">33</span><span class="op">)</span>, <span class="fl">123</span>, <span class="fl">51.23</span>, <span class="fl">119.1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">list_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+[1] "runoob"
+
+[[2]]
+[1] "google"
+
+[[3]]
+[1] 11 22 33
+
+[[4]]
+[1] 123
+
+[[5]]
+[1] 51.23
+
+[[6]]
+[1] 119.1</code></pre>
+</div>
+</div>
+<p>我们可以使用 <code><a href="https://rdrr.io/r/base/names.html">names()</a></code>函数给列表的元素命名：</p>
+<div class="cell">
+<div class="sourceCode" id="cb109"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 给列表元素设置名字</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">list_data</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name1"</span>, <span class="st">"name2"</span>, <span class="st">"data1"</span>, <span class="st">"number1"</span>, <span class="st">"number2"</span>, <span class="st">"number3"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 显示列表</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">list_data</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$name1
+[1] "runoob"
+
+$name2
+[1] "google"
+
+$data1
+[1] 11 22 33
+
+$number1
+[1] 123
+
+$number2
+[1] 51.23
+
+$number3
+[1] 119.1</code></pre>
+</div>
+</div>
+<p>列表中的元素可以使用索引来访问，如果使用来 names() 函数命名后，我们还可以使用对应名字来访问：</p>
+<div class="cell">
+<div class="sourceCode" id="cb111"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 访问列表的第三个元素，返回的仍然是列表类型</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">list_data</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$data1
+[1] 11 22 33</code></pre>
+</div>
+<div class="sourceCode" id="cb113"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 访问列表的第三个元素，返回的是向量</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">list_data</span><span class="op">[[</span><span class="fl">3</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 22 33</code></pre>
+</div>
+<div class="sourceCode" id="cb115"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 访问第一个向量元素</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">list_data</span><span class="op">$</span><span class="va">data1</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11 22 33</code></pre>
+</div>
+</div>
+</section></section><section id="r判断语句和循环" class="level2"><h2 class="anchored" data-anchor-id="r判断语句和循环">R判断语句和循环</h2>
+<section id="ifelse语句" class="level3"><h3 class="anchored" data-anchor-id="ifelse语句">If…else…语句</h3>
+<p>示例：</p>
+<div class="cell">
+<div class="sourceCode" id="cb117"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="st">"小明"</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">is.character</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x是一个字符串"</span><span class="op">)</span></span>
+<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="st">"x不是一个字符串"</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "x是一个字符串"</code></pre>
+</div>
+</div>
+<p>其中，<code>is.character</code> 用于判断一个对象是不是字符型。</p>
+</section><section id="while循环" class="level3"><h3 class="anchored" data-anchor-id="while循环">while循环</h3>
+<p>只要给定的条件为 true，R 语言中的 while 循环语句会重复执行一个目标语句。</p>
+<div class="cell">
+<div class="sourceCode" id="cb119"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
+<span><span class="va">i</span> <span class="op">&lt;-</span> <span class="fl">2</span></span>
+<span></span>
+<span><span class="co"># 使用while循环实现一个累加运算</span></span>
+<span><span class="kw">while</span> <span class="op">(</span><span class="va">i</span> <span class="op">&lt;=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span>   <span class="va">v</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">v</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">+</span> <span class="va">v</span><span class="op">[</span><span class="va">i</span><span class="op">-</span><span class="fl">1</span><span class="op">]</span></span>
+<span>   <span class="va">i</span> <span class="op">=</span> <span class="va">i</span> <span class="op">+</span> <span class="fl">1</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1  3  6 10 15</code></pre>
+</div>
+</div>
+<p>上述功能也可以使用<code>cunsum</code> 实现：</p>
+<div class="cell">
+<div class="sourceCode" id="cb121"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">5</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cumsum.html">cumsum</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  1  3  6 10 15</code></pre>
+</div>
+</div>
+</section><section id="for循环" class="level3"><h3 class="anchored" data-anchor-id="for循环">for循环</h3>
+<p>R 编程语言中 for 循环语句可以重复执行指定语句，重复次数可在 for 语句中控制。</p>
+<p>比如，给定一个向量<code>1:10</code> ，求每个元素的平方：</p>
+<div class="cell">
+<div class="sourceCode" id="cb123"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="kw">for</span> <span class="op">(</span><span class="va">i</span> <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span><span class="op">{</span></span>
+<span>  <span class="va">v</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">v</span><span class="op">[</span><span class="va">i</span><span class="op">]</span> <span class="op">^</span> <span class="fl">2</span></span>
+<span><span class="op">}</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+</div>
+</div>
+<p>循环语句一般效率比较低下，如果可能的话，尽量使用向量化运算：</p>
+<div class="cell">
+<div class="sourceCode" id="cb125"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="va">v</span> <span class="op">&lt;-</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">v</span> <span class="op">^</span> <span class="fl">2</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   1   4   9  16  25  36  49  64  81 100</code></pre>
+</div>
+</div>
+</section></section><section id="r包package" class="level2"><h2 class="anchored" data-anchor-id="r包package">R包（package）</h2>
+<section id="什么是r包" class="level3"><h3 class="anchored" data-anchor-id="什么是r包">什么是R包？</h3>
+<p>R包是R语言的扩展程序库，它包含一组已经编写好的函数、数据集、文档和演示程序等资源，以便于R语言用户重复使用和共享。</p>
+<p>使用R包，用户可以快速实现复杂的数据分析、数据可视化和统计建模等任务，而不需要自己编写大量代码。R包是R语言生态系统的重要组成部分，它们是开源的，由R语言社区中的各种贡献者创建和维护，可以通过在线资源库（如CRAN）或者其他渠道获取和安装。同时，用户也可以自己创建和发布R包，从而为R语言生态系统做出自己的贡献。</p>
+</section><section id="如何安装和使用r包" class="level3"><h3 class="anchored" data-anchor-id="如何安装和使用r包">如何安装和使用R包？</h3>
+<p>在R语言中，可以通过以下几种方法来安装R包（以一个名为<code>tidyverse</code>的包为例）：</p>
+<ul>
+<li>CRAN镜像安装</li>
+</ul>
+<p>CRAN（The Comprehensive R Archive Network）是R语言官方的资源库，其中包含大量的R包和相关资源。要安装一个CRAN中的R包，可以使用以下命令：</p>
+<div class="cell">
+<div class="sourceCode" id="cb127"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>GitHub安装（国内可能有限制，无法访问GitHub）</li>
+</ul>
+<p>很多R包也会发布在GitHub上，使用以下命令可以从GitHub上安装一个R包：</p>
+<div class="cell">
+<div class="sourceCode" id="cb128"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"username/package_name"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>其中，<code>username/package_name</code> 是要安装的R包在GitHub上的路径。在使用此方法前，需要先安装<code>devtools</code> 包，可以使用以下命令安装：</p>
+<div class="cell">
+<div class="sourceCode" id="cb129"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>本地安装</li>
+</ul>
+<p>如果已经下载了一个R包的源代码（通常是以<code>.tar.gz</code> 或<code>.zip</code> 格式压缩的文件），可以使用以下命令将其安装到本地：</p>
+<div class="cell">
+<div class="sourceCode" id="cb130"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"path_to_package_file"</span>, repos <span class="op">=</span> <span class="cn">NULL</span>, type<span class="op">=</span><span class="st">"source"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>其中，<code>path_to_package_file</code>是R包的本地文件路径。<code>repos = NULL</code>表示不从远程资源库中下载依赖项，<code>type="source"</code>表示安装的是源代码版本的R包。</p>
+<p>在同一个版本的R语言中，一个包只需要下载一次，后续就可以通过<code>library</code> 函数加载使用它了：</p>
+<div class="cell">
+<div class="sourceCode" id="cb131"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="如何更新r包" class="level3"><h3 class="anchored" data-anchor-id="如何更新r包">如何更新R包？</h3>
+<p>有时候，某个R包的开发者可能会提交更新的版本，修复原有的R包中的一些缺陷，或拓展原有R包的功能，此时就需要更新R包。在R语言中，可以使用以下方法来更新已安装的R包：</p>
+<ul>
+<li>更新单个包</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb132"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html">update.packages</a></span><span class="op">(</span><span class="st">"tidyverse"</span><span class="op">)</span> <span class="co"># 以tidyverse包为例</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>该命令会检查远程资源库中是否有新版本的R包，如果有，则会下载并安装最新版本的R包。如果没有新版本可用，则不会进行任何操作。</p>
+<ul>
+<li>更新所有包</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb133"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/update.packages.html">update.packages</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>该命令会检查所有已安装的R包是否有新版本可用，并将所有可更新的R包下载并安装。请注意，更新所有R包可能需要较长时间，取决于R包的数量和大小。</p>
+</section><section id="如何使用r包中的函数" class="level3"><h3 class="anchored" data-anchor-id="如何使用r包中的函数">如何使用R包中的函数？</h3>
+<p>安装R包后，加载R包，就可以使用其中的函数了。</p>
+<p>以<code>ggplot2</code>包为例，该包是一款流行的R语言数据可视化包，它提供了一种基于语法层次结构的绘图系统，可以快速轻松地创建各种类型的高质量图表。</p>
+<p><code>ggplot2</code>基于图形语法，即通过将数据映射到图形属性（例如颜色、大小、形状等）来创建图形。其核心是图层（layer），即不同数据和视觉属性的叠加。通过添加不同的图层和修改各种属性，可以创建各种类型的图表，包括散点图、折线图、条形图、直方图、密度图、箱线图、饼图等等。</p>
+<p>以下是使用<code>ggplot2</code> 绘制散点图的示例：</p>
+<div class="cell">
+<div class="sourceCode" id="cb134"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="co"># 安装ggplot2</span></span>
+<span><span class="co"># install.packages("ggplot2") # 本人计算机中已安装，因此此行注释掉</span></span>
+<span></span>
+<span><span class="co"># 加载ggplot2</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># 使用R语言自带的`mtcars`数据集制图：</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="va">mtcars</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">mtcars</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">wt</span>, y <span class="op">=</span> <span class="va">mpg</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span><span class="op">(</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="02-Rbegin_files/figure-html/unnamed-chunk-41-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section><section id="对于不熟悉的函数如何寻求帮助" class="level3"><h3 class="anchored" data-anchor-id="对于不熟悉的函数如何寻求帮助">对于不熟悉的函数，如何寻求帮助？</h3>
+<p>在R中，有几种方法可以寻求帮助，以解决对不熟悉函数的困惑。以下是一些常用的方法：</p>
+<ul>
+<li>使用<code><a href="https://rdrr.io/r/utils/help.html">help()</a></code> 函数</li>
+</ul>
+<p>可以使用<code>help</code> 函数来获取函数的帮助信息。例如，如果您想了解<code>mean</code> 函数的用法，可以输入并运行<code><a href="https://rdrr.io/r/base/mean.html">help(mean)</a></code> ，然后按回车键，将会显示有关该函数的详细帮助信息。</p>
+<div class="cell">
+<div class="sourceCode" id="cb135"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/help.html">help</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="images/image-1557806416.png" class="img-fluid"></p>
+<ul>
+<li>使用<code><a href="https://rdrr.io/r/utils/example.html">example()</a></code>函数：使用<code><a href="https://rdrr.io/r/utils/example.html">example()</a></code>函数可以显示有关特定函数的示例。例如，如果您想了解如何使用<code><a href="https://rdrr.io/r/base/mean.html">mean()</a></code>函数，可以在控制台中输入<code>example(mean)</code>，然后按回车键，将会显示有关该函数的一些示例。</li>
+</ul>
+<div class="cell">
+<div class="sourceCode" id="cb136"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/example.html">example</a></span><span class="op">(</span><span class="va">mean</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+mean&gt; x &lt;- c(0:10, 50)
+
+mean&gt; xm &lt;- mean(x)
+
+mean&gt; c(xm, mean(x, trim = 0.10))
+[1] 8.75 5.50</code></pre>
+</div>
+</div>
+<ul>
+<li>使用搜索引擎：您可以在互联网上使用搜索引擎（如百度、必应）来搜索特定函数的帮助信息或教程。R社区中也有许多网站和论坛可以寻求帮助，例如Stack Overflow、R-bloggers等等。</li>
+</ul></section></section><section id="小结" class="level2"><h2 class="anchored" data-anchor-id="小结">小结</h2>
+<p>R语言的基础函数非常多，随着不断的更新和扩展，基础函数的数量也在不断增加。截至R语言的版本4.0.5，基础函数的数量约为1622个。而这还只是R base中的函数。</p>
+<p>除基础函数外，R语言的众多包则包含了更多函数。以R官方的CRAN为例，截止至2023年3月，CRAN已经收录了19256个可用的包，每个包中又有很多实现特定功能的函数。R包的数量持续以每月100-200个的规模增长。</p>
+<p>因此，要在使用R语言进行数据分析时，了解如何查找、选择和使用适当的R包是非常重要的。而且，由于每个开发者的习惯不同，各种包的函数命名规则、使用方法等也有很大区别。这就需要大家依据自己的数据处理或研究需求寻找对应的R包，并加以学习。<strong>有时候，R函数的应用是非常简单的，难点在于背后的统计知识，当你不了解这些统计知识时，再优秀的R包也无济于事</strong>。</p>
+<p>本章主要目的是帮助大家初步认识R语言和Rstudio。后续内容中，我们将一边实战，一边学习。对于专注于特定课程学习，仅把R语言作为工具的使用者来说，我相信这是效率更高的做法。</p>
+
+
+</section></section></main><!-- /main --><script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script><nav class="page-navigation"><div class="nav-page nav-page-previous">
+      <a href="./01-Rstudio.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R和Rstudio的安装与使用</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-TSdata.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">时间序列数据</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>
